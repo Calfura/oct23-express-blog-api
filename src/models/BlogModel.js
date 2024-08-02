@@ -19,7 +19,7 @@ const blogSchema = mongoose.Schema({
     },
     content: {
         type: String,
-        required: true
+        required: true 
     },
     author: {
         type: String, // come back later and replace this with a Mongoose object ID
@@ -27,8 +27,26 @@ const blogSchema = mongoose.Schema({
     },
     likes: {
         type: [String] // Come back later and replace with a Mongoose object ID
+    },
+    headerImage: {
+        type: String, // URL to the file/image storage provider
+        required: true
+    },
+    tags: {
+        type: [String], // ["life", "travel", "photography"]
+        required: true
+    },
+    editHistory: {
+        type: [Object],
+        required: false
     }
 },
 {
     timestamps: true
 })
+
+const BlogModel = mongoose.model("Blog", blogSchema);
+
+module.exports = {
+    BlogModel
+}
