@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/", async(request, response, next) => {
 
-    let result = await BlogModel.
+    let result = await BlogModel.find({}).exec();
 
     response.json({
         message:"Blog router homepage"
