@@ -11,6 +11,7 @@
 */
 
 const mongoose = require("mongoose");
+const { commentSchema } = require("./CommentModel");
 
 const blogSchema = mongoose.Schema({
     title: {
@@ -38,6 +39,13 @@ const blogSchema = mongoose.Schema({
     },
     editHistory: {
         type: [Object],
+        required: false
+    },
+    commentAsObj: {
+        type: [{userID: {type: mongoose.Schema.Types.ObjectId, ref:"User", content: {type: String}}}] // Nested mess of everything
+    },
+    comment: {
+        type: [commentSchema], // Refactors and keeps things tidy
         required: false
     }
 },
