@@ -16,7 +16,8 @@ const { commentSchema } = require("./CommentModel");
 const blogSchema = mongoose.Schema({
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     content: {
         type: String,
@@ -38,6 +39,12 @@ const blogSchema = mongoose.Schema({
         type: [String], // ["life", "travel", "photography"]
         required: true
     },
+    categoires: {
+        type: [String],
+        enum: ["life", "travel", "photography", "coding"],
+        required: true
+    }
+    ,
     editHistory: {
         type: [Object],
         required: false
