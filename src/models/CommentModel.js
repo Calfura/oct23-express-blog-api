@@ -1,10 +1,16 @@
-
+/*
+Join table in SQL, but a subdocument in Mongoose that lives in Blog posts
+- user id
+- comment content
+- like
+*/
 
 const mongoose = require("mongoose");
 
 const commentSchema = mongoose.Schema({
     author: {
-        type: {type: mongoose.Schema.Types.ObjectId, ref:"User"},
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User",
         required: true
     },
     content: {
