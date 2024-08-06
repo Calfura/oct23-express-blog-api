@@ -2,8 +2,7 @@ const { BlogModel } = require("../models/BlogModel");
 const { UserModel } = require("../models/UserModel");
 const { comparePasswords, createJwt, validateJwt } = require("./authHelpers");
 const { databaseConnect, databaseClear, databaseClose } = require("./database");
-const dotenv = require("dotenv")
-dotenv.config();
+
 
 
 async function seedUsers () {
