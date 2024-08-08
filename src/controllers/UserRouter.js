@@ -1,6 +1,6 @@
 const express = require("express");
 const { UserModel } = require("../models/UserModel"); // Need this imported somewhere in the server code to make the server connection use Users
-const { comparePasswords, createJwt } = require("../utils/authHelpers");
+const { comparePasswords, createJwt, decodeJwt } = require("../utils/authHelpers");
 const router = express.Router();
 
 router.get("/", async(request, response, next) => {
@@ -47,10 +47,12 @@ router.post("/", async(request, response, next) => {
     // Catches error when field is not provided. Prevents server crashing
     let result = await UserModel.create(request.body).catch(error => {
         error.status = 400;
+        console.log("Error on making user", error)
         return error
     });
 
     let jwt = createJwt(result._id);
+    let decodedJwt = decodeJwt(jwt);
 
     if (result.errors) {
         return next(result);
@@ -59,7 +61,8 @@ router.post("/", async(request, response, next) => {
     response.json({
         message:"User router homepage",
         result: result,
-        jwt: jwt
+        jwt: jwt,
+        decodedJwt
     });
 });
 
