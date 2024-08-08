@@ -8,7 +8,7 @@ dotenv.config();
 async function comparePasswords(plaintextPassword, encryptedPassword) {
     let doesPasswordMatch = false;
 
-    doesPasswordMatch = await bcrypt.compare( plaintextPassword, encryptedPassword);
+    doesPasswordMatch = await bcrypt.compare(plaintextPassword, encryptedPassword);
 
     return doesPasswordMatch;
 }
